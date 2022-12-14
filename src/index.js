@@ -2,10 +2,17 @@
 const { response } = require('express')
 const express = require('express')
 
+// import routes and assets
+
 const quotes = require('./quotes.json')
+const userRouter = require('./routes/userRoutes')
+const noteRouter = require('./routes/noteRoutes')
 
 // start app
 const app = express()
+
+app.use('/users', userRouter)
+app.use('/notes', noteRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello')
