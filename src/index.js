@@ -18,6 +18,7 @@ const mongodbURL = process.env.MONGODB
 // import mongoose
 const mongoose = require('mongoose')
 
+app.use(express.json())
 // connect mongodb; if connected start the app
 mongoose
   .connect(mongodbURL)
@@ -31,9 +32,11 @@ mongoose
     console.log(e)
   })
 
+// express routers
 app.use('/users', userRouter)
 app.use('/notes', noteRouter)
 
+// basic routes and http requests
 app.get('/', (req, res) => {
   res.send('Hello')
 })
