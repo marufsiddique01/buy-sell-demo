@@ -18,7 +18,15 @@ const mongodbURL = process.env.MONGODB
 // import mongoose
 const mongoose = require('mongoose')
 
+// converting all body items to json middleware
 app.use(express.json())
+
+// simple middlewares to console log recent http method
+app.use((req, res, next) => {
+  console.log('HTTP Method - ' + req.method + ' , URL - ' + req.url)
+  next()
+})
+
 // connect mongodb; if connected start the app
 mongoose
   .connect(mongodbURL)
